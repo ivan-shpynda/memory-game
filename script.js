@@ -123,27 +123,22 @@ function initializeGame() {
   // timer function
   function setTimer() {
     let time = +gameParameters.timeLimit;
-    timeIndicator.textContent = `🕓 Timer: ${time} sec`;
     let paused = true;
-    let timerCountDown;
-  
-    (() => {
-      timerCountDown = setInterval(() => {
-        if (!paused) time--;
-        timeIndicator.textContent = `🕓 Timer: ${time} sec`;
 
-        if (time < 1) {
-          clearInterval(timerCountDown);
-          timeIndicator.textContent = '🔴 Time Limit Exceeded';
-          replayBtn.style.display = 'block';
-          const cards = document.querySelectorAll('.game-card');
-          cards.forEach(card => {
-            card.textContent = '';
-            card.removeEventListener('click', flipCard);
-          })
-        }
-      }, 1000);
-    })();
+    const timerCountDown = setInterval(() => {
+      timeIndicator.textContent = `🕓 Timer: ${time} sec`;
+      if (!paused) time--;
+      if (time < 1) {
+        clearInterval(timerCountDown);
+        timeIndicator.textContent = '🔴 Time Limit Exceeded';
+        replayBtn.style.display = 'block';
+        const cards = document.querySelectorAll('.game-card');
+        cards.forEach(card => {
+          card.textContent = '';
+          card.removeEventListener('click', flipCard);
+        })
+      }
+    }, 1000);
 
     const resume = () => paused = false;
     const pause = () => paused  = true;
@@ -163,14 +158,14 @@ function initializeGame() {
     const secondSelected = chosenCardsIds[1];
 
     if (firstSelected === secondSelected) {
-      cards[firstSelected].innerHTML = '';
+      cards[firstSelected].textContent = '';
     } else if (chosenCardsValues[0] === chosenCardsValues[1]) {
       cards[firstSelected].removeEventListener('click', flipCard);
       cards[secondSelected].removeEventListener('click', flipCard);
 
       setTimeout(() => {
-        cards[firstSelected].innerHTML = '';
-        cards[secondSelected].innerHTML = '';
+        cards[firstSelected].textContent = '';
+        cards[secondSelected].textContent = '';
         cards[firstSelected].style.backgroundColor = '#fefefe';
         cards[secondSelected].style.backgroundColor = '#fefefe';
         counter++;
@@ -179,8 +174,8 @@ function initializeGame() {
 
     } else {
       setTimeout(() => {
-        cards[firstSelected].innerHTML = '';
-        cards[secondSelected].innerHTML = '';
+        cards[firstSelected].textContent = '';
+        cards[secondSelected].textContent = '';
       }, 500);
     }
 
@@ -202,7 +197,7 @@ function initializeGame() {
 function replayGame() {
   settingSection.style.display = 'block';
   gameFieldWrapper.style.display = 'none';
-  cardsWrapper.innerHTML = '';
+  cardsWrapper.textContent = '';
   timeIndicator.style.color = 'inherit';
   replayBtn.style.display = 'none';
 };
