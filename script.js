@@ -80,7 +80,6 @@ function initializeGame() {
   const cardsContainer = gameField.createCards();
   const uniqueValuesNumber = gameField.values.length / 2;
   let counter = 0;
-  let timerCountDown;
 
   // add event to each card
   cardsContainer.childNodes.forEach((card) => {
@@ -100,12 +99,8 @@ function initializeGame() {
 
   // setting timer for the game
   const timer = setTimer();
-  cardsContainer.addEventListener('mouseenter', () => {
-    timer.resume();
-  })
-  cardsContainer.addEventListener('mouseleave', () => {
-    timer.pause();
-  })
+  cardsContainer.addEventListener('mouseleave', timer.pause);
+  cardsContainer.addEventListener('mouseenter', timer.resume);
 
   // ids and values of selected cards
   const chosenCardsIds = [];
@@ -128,33 +123,37 @@ function initializeGame() {
   // timer function
   function setTimer() {
     let time = +gameParameters.timeLimit;
-    timeIndicator.innerHTML = `🕓 Timer: ${time} sec`
-    const timer = {};
+    timeIndicator.textContent = `🕓 Timer: ${time} sec`;
+    let paused = true;
+    let timerCountDown;
   
-    timer.resume = function() {
+    (() => {
       timerCountDown = setInterval(() => {
-        time--;
-        timeIndicator.innerHTML = `🕓 Timer: ${time} sec`;
-    
+        if (!paused) time--;
+        timeIndicator.textContent = `🕓 Timer: ${time} sec`;
+
         if (time < 1) {
           clearInterval(timerCountDown);
-          timeIndicator.style.color = 'red';
-          timeIndicator.innerHTML = 'Time Limit Exceeded';
+          timeIndicator.textContent = '🔴 Time Limit Exceeded';
           replayBtn.style.display = 'block';
           const cards = document.querySelectorAll('.game-card');
           cards.forEach(card => {
-            card.innerHTML = '';
+            card.textContent = '';
             card.removeEventListener('click', flipCard);
           })
         }
       }, 1000);
-    }
+    })();
+
+    const resume = () => paused = false;
+    const pause = () => paused  = true;
+    const stop = () => clearInterval(timerCountDown);
   
-    timer.pause = function() {
-      clearInterval(timerCountDown);
-    }
-  
-    return timer;
+    return {
+      pause,
+      resume,
+      stop
+    };
   }
 
   // function to check for match
@@ -191,7 +190,7 @@ function initializeGame() {
 
   // function to run if all matches are found
   function gameWon() {
-    clearInterval(timerCountDown);
+    timer.stop();
     replayBtn.style.display = 'block';
     timeIndicator.textContent = 'You have found all matches! 🥳';
   }
