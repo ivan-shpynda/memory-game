@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Matching game</title>
+</head>
+<body>
+  <h1 class="title">Matching Game</h1>
+  <section class="game-settings">
+    <div class="game-settings-item">
+      <input type="number" value="45" id="time-limit">
+      <label for="time-limit">Time limit (sec)</label>
+    </div>
+    <div class="game-settings-item">
+      <input type="number" value="400" id="width">
+      <label for="width">Width of the activity field (px)</label>
+    </div>
+    <div class="game-settings-item">
+      <input type="number" value="400" id="height">
+      <label for="height">Height of the activity field (px)</label>
+    </div> 
+    <div class="game-settings-item">
+      <select id="rows">
+        <option value="4">4</option>
+        <option value="6">6</option>
+        <option value="8">8</option>
+      </select>
+      <label for="rows">Rows</label>
+    </div>
+    <div class="game-settings-item">
+      <select id="columns" value="4">
+        <option value="4">4</option>
+        <option value="6">6</option>
+        <option value="8">8</option>
+      </select>
+      <label for="columns">Columns</label>
+    </div>
+    <div class="game-settings-item">
+      <select id="theme">
+        <option value="red">Red</option>
+        <option value="violet">Violet</option>
+        <option value="green">Green</option>
+        <option value="yellow">Yellow</option>
+        <option value="orange">Orange</option>
+      </select>
+      <label for="theme">Color theme</label>
+    </div>
+  <button class="start-btn">Start</button>
+  </section>
+  <section class="game-field-wrapper">
+    <div class="game-timer"></div>
+    <div class="cards-wrapper"></div>
+    <button class="replay-btn">Replay</button>
+  </section>
+  <script type="module" src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Righteous&family=Rubik+Bubbles&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --dark: #2E3440;
+  --medium-dark: #3B4252;
+  --light-dard: #4C566A;
+  --light-bg: #D8DEE9;
+  --green: #A3BE8C;
+  --violet: #B48EAD;
+  --red: #BF616A;
+  --orange: #D08770;
+  --yellow: #EBCB8B;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fefefe;
+  color: var(--dark);
+  min-height: 100vh;
+  padding: 64px 32px;
+}
+
+input, select {
+  padding: 8px 16px;
+  border: 1px solid var(--light-dard);
+  border-radius: 4px;
+  width: 156px;
+  margin-right: 16px;
+}
+
+button {
+  background-color: var(--medium-dark);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  width: 156px;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.title {
+  text-align: center;
+  margin: 0 0 32px;
+  font-family: 'Fredoka One', cursive;
+}
+
+.game-settings {
+  max-width: 468px;
+  margin: 0 auto;
+  padding: 32px;
+  border-radius: 8px;
+  background-color: var(--light-bg);
+}
+
+.game-settings-item {
+  margin-bottom: 32px;
+}
+
+.game-field-wrapper {
+  margin: 0 auto;
+  display: none;
+}
+
+.replay-btn {
+  margin: 32px auto 0;
+  display: none;
+}
+
+.game-timer {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.game-cards {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.start-btn {
+  margin-top: 64px;
+}
+
+.game-card {
+  color: #fff;
+  border: 1px solid var(--light-dard);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transform: translateX(42px);
+}
+
+.green {
+  background-color: var(--green);
+}
+
+.violet {
+  background-color: var(--violet);
+}
+
+.red {
+  background-color: var(--red);
+}
+
+.orange {
+  background-color: var(--orange);
+}
+
+.yellow {
+  background-color: var(--yellow);
+}
+
+.test {
+  transform: rotateX(180deg);
+}
