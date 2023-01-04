@@ -1,6 +1,6 @@
 # Memory Game
 
-In this game the user's objective is to find matching elements from a grid of interactable elements
+In this game the user's objective is to find matching elements from a grid of interactable elements.
 [DEMO link](https://ivan-shpynda.github.io/memory-game/)
 
 ## Technologies
